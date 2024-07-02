@@ -1,5 +1,10 @@
 import { Snackbar } from '@mui/material';
-import { DataGrid, GridCellParams, GridColDef } from '@mui/x-data-grid';
+import {
+	DataGrid,
+	GridCellParams,
+	GridColDef,
+	GridToolbar,
+} from '@mui/x-data-grid';
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import { useState } from 'react';
 import { deleteCar, getCars } from '../api/car-api';
@@ -84,6 +89,7 @@ const CarList = () => {
 					columns={columns}
 					getRowId={(row) => row._links.self.href}
 					disableRowSelectionOnClick={true}
+					slots={{ toolbar: GridToolbar }}
 				/>
 				<Snackbar
 					open={openSnackbar}
