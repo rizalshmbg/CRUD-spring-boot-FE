@@ -4,6 +4,7 @@ import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import { useState } from 'react';
 import { deleteCar, getCars } from '../api/car-api';
 import AddCar from './AddCar';
+import EditCar from './EditCar';
 
 const CarList = () => {
 	const [openSnackbar, setOpenSnackbar] = useState(false);
@@ -35,7 +36,16 @@ const CarList = () => {
 			width: 170,
 		},
 		{ field: 'modelYear', headerName: 'Model Year', width: 150 },
-		{ field: 'price', headerName: 'Price', width: 150 },
+		{ field: 'price', headerName: 'Price', width: 100 },
+		{
+			field: 'edit',
+			headerName: '',
+			width: 90,
+			sortable: false,
+			filterable: false,
+			disableColumnMenu: true,
+			renderCell: (params: GridCellParams) => <EditCar carData={params.row} />,
+		},
 		{
 			field: 'delete',
 			headerName: '',
