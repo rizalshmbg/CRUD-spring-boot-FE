@@ -1,8 +1,9 @@
-import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
-import { getCars, deleteCar } from '../api/car-api';
-import { DataGrid, GridColDef, GridCellParams } from '@mui/x-data-grid';
 import { Snackbar } from '@mui/material';
+import { DataGrid, GridCellParams, GridColDef } from '@mui/x-data-grid';
+import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import { useState } from 'react';
+import { deleteCar, getCars } from '../api/car-api';
+import AddCar from './AddCar';
 
 const CarList = () => {
 	const [openSnackbar, setOpenSnackbar] = useState(false);
@@ -67,6 +68,7 @@ const CarList = () => {
 	} else {
 		return (
 			<>
+				<AddCar />
 				<DataGrid
 					rows={data}
 					columns={columns}
