@@ -1,5 +1,6 @@
 import axios from 'axios';
 import { Car, CarResponse } from '../types';
+import { CarEntry } from './../types';
 
 // GET ALL CARS FUNC
 export const getCars = async (): Promise<CarResponse[]> => {
@@ -25,6 +26,17 @@ export const addCar = async (car: Car): Promise<CarResponse> => {
 			},
 		}
 	);
+
+	return resp.data;
+};
+
+// EDIT CAR FUNC
+export const editCar = async (carEntry: CarEntry): Promise<CarResponse> => {
+	const resp = await axios.patch(carEntry.url, carEntry.car, {
+		headers: {
+			'Content-Type': 'application/json',
+		},
+	});
 
 	return resp.data;
 };
