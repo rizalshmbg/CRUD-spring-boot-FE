@@ -1,5 +1,5 @@
 import DeleteIcon from '@mui/icons-material/Delete';
-import { IconButton, Snackbar, Tooltip } from '@mui/material';
+import { Button, IconButton, Snackbar, Stack, Tooltip } from '@mui/material';
 import {
 	DataGrid,
 	GridCellParams,
@@ -12,7 +12,11 @@ import { deleteCar, getCars } from '../api/car-api';
 import AddCar from './AddCar';
 import EditCar from './EditCar';
 
-const CarList = () => {
+type CarListProps = {
+	handleBtnLogout: () => void;
+};
+
+const CarList = ({ handleBtnLogout }: CarListProps) => {
 	const [openSnackbar, setOpenSnackbar] = useState(false);
 
 	const queryClient = useQueryClient();
@@ -88,7 +92,14 @@ const CarList = () => {
 	} else if (isSuccess) {
 		return (
 			<>
-				<AddCar />
+				<Stack
+					direction='row'
+					alignItems='center'
+					justifyContent='space-between'
+				>
+					<AddCar />
+					<Button onClick={handleBtnLogout}>Logout</Button>
+				</Stack>
 				<DataGrid
 					rows={data}
 					columns={columns}
