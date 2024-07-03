@@ -6,7 +6,7 @@ import {
 	Typography,
 } from '@mui/material';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
-import CarList from './components/CarList';
+import Login from './components/Login';
 
 const queryClient = new QueryClient();
 
@@ -20,7 +20,7 @@ function App() {
 				</Toolbar>
 			</AppBar>
 			<QueryClientProvider client={queryClient}>
-				<CarList />
+				<Login />
 			</QueryClientProvider>
 		</Container>
 	);
