@@ -1,4 +1,4 @@
-import { Button, Stack, TextField } from '@mui/material';
+import { Button, Snackbar, Stack, TextField } from '@mui/material';
 import axios from 'axios';
 import { ChangeEvent, useState } from 'react';
 import CarList from './CarList';
@@ -14,26 +14,28 @@ const Login = () => {
 		password: '',
 	});
 	const [isAuthenticated, setIsAuthenticated] = useState(false);
+	const [openSnackBar, setOpenSnackBar] = useState(false);
 
 	const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
 		setUser({ ...user, [e.target.name]: e.target.value });
 	};
 
-	const handleBtnLogin = () => {
-		axios
-			.post(`${import.meta.env.VITE_API_URL}/login`, user, {
+	const handleBtnLogin = async () => {
+		try {
+			const res = axios.post(`${import.meta.env.VITE_API_URL}/login`, user, {
 				headers: {
 					'Content-Type': 'application/json',
 				},
-			})
-			.then((res) => {
-				const jwtToken = res.headers.authorization;
-				if (jwtToken !== null) {
-					sessionStorage.setItem('jwt', jwtToken);
-					setIsAuthenticated(true);
-				}
-			})
-			.catch((err) => console.error(err));
+			});
+			const jwtToken = (await res).headers.authorization;
+			if (jwtToken !== null) {
+				sessionStorage.setItem('jwt', jwtToken);
+				setIsAuthenticated(true);
+			}
+		} catch (error) {
+			console.error(error);
+			setOpenSnackBar(true);
+		}
 	};
 
 	if (isAuthenticated) {
@@ -55,6 +57,12 @@ const Login = () => {
 				<Button variant='outlined' color='primary' onClick={handleBtnLogin}>
 					Login
 				</Button>
+				<Snackbar
+					open={openSnackBar}
+					autoHideDuration={3000}
+					onClose={() => setOpenSnackBar(false)}
+					message='Login failed: Please check your username and password!'
+				/>
 			</Stack>
 		);
 	}
