@@ -1,4 +1,4 @@
-import { DialogContent } from '@mui/material';
+import { DialogContent, Stack, TextField } from '@mui/material';
 import { ChangeEvent } from 'react';
 import { Car } from '../types';
 
@@ -10,64 +10,55 @@ type DialogFormProps = {
 const CarDialogContent = ({ car, handleChangeInputCar }: DialogFormProps) => {
 	return (
 		<DialogContent>
-			{/* BRAND */}
-			<input
-				type='text'
-				placeholder='Brand'
-				name='brand'
-				value={car.brand}
-				onChange={handleChangeInputCar}
-			/>
-			<br />
+			<Stack spacing={2} mt={1}>
+				{/* BRAND */}
+				<TextField
+					label='Brand'
+					name='brand'
+					value={car.brand}
+					onChange={handleChangeInputCar}
+				/>
 
-			{/* MODEL */}
-			<input
-				type='text'
-				placeholder='Model'
-				name='model'
-				value={car.model}
-				onChange={handleChangeInputCar}
-			/>
-			<br />
+				{/* MODEL */}
+				<TextField
+					label='Model'
+					name='model'
+					value={car.model}
+					onChange={handleChangeInputCar}
+				/>
 
-			{/* COLOR */}
-			<input
-				type='text'
-				placeholder='Color'
-				name='color'
-				value={car.color}
-				onChange={handleChangeInputCar}
-			/>
-			<br />
+				{/* COLOR */}
+				<TextField
+					label='Color'
+					name='color'
+					value={car.color}
+					onChange={handleChangeInputCar}
+				/>
 
-			{/* YEAR */}
-			<input
-				type='number'
-				placeholder='Year'
-				name='modelYear'
-				value={car.modelYear}
-				onChange={handleChangeInputCar}
-			/>
-			<br />
+				{/* YEAR */}
+				<TextField
+					label='Year'
+					name='modelYear'
+					value={car.modelYear}
+					onChange={handleChangeInputCar}
+				/>
 
-			{/* REGISTRATION NUMBER */}
-			<input
-				type='text'
-				placeholder='Registration Number'
-				name='registrationNumber'
-				value={car.registrationNumber}
-				onChange={handleChangeInputCar}
-			/>
-			<br />
+				{/* REGISTRATION NUMBER */}
+				<TextField
+					label='Registration Number'
+					name='registrationNumber'
+					value={car.registrationNumber}
+					onChange={handleChangeInputCar}
+				/>
 
-			{/* PRICE */}
-			<input
-				type='number'
-				placeholder='Price'
-				name='price'
-				value={car.price}
-				onChange={handleChangeInputCar}
-			/>
+				{/* PRICE */}
+				<TextField
+					label='Price'
+					name='price'
+					value={car.price}
+					onChange={handleChangeInputCar}
+				/>
+			</Stack>
 		</DialogContent>
 	);
 };

@@ -1,4 +1,12 @@
-import { Dialog, DialogActions, DialogTitle } from '@mui/material';
+import EditIcon from '@mui/icons-material/Edit';
+import {
+	Button,
+	Dialog,
+	DialogActions,
+	DialogTitle,
+	IconButton,
+	Tooltip,
+} from '@mui/material';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { ChangeEvent, useState } from 'react';
 import { editCar } from '../api/car-api';
@@ -68,7 +76,11 @@ const EditCar = ({ carData }: FormProps) => {
 
 	return (
 		<>
-			<button onClick={handleOpenModal}>Edit</button>
+			<Tooltip title='Edit Car'>
+				<IconButton aria-label='edit' size='small' onClick={handleOpenModal}>
+					<EditIcon fontSize='small' />
+				</IconButton>
+			</Tooltip>
 			<Dialog open={openModal} onClose={handleCloseModal}>
 				<DialogTitle>Edit Car</DialogTitle>
 				<CarDialogContent
@@ -76,8 +88,8 @@ const EditCar = ({ carData }: FormProps) => {
 					handleChangeInputCar={handleChangeInputCar}
 				/>
 				<DialogActions>
-					<button onClick={handleCloseModal}>Cancel</button>
-					<button onClick={handleSaveCar}>Save</button>
+					<Button onClick={handleCloseModal}>Cancel</Button>
+					<Button onClick={handleSaveCar}>Save</Button>
 				</DialogActions>
 			</Dialog>
 		</>

@@ -1,4 +1,4 @@
-import { Dialog, DialogActions, DialogTitle } from '@mui/material';
+import { Button, Dialog, DialogActions, DialogTitle } from '@mui/material';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { ChangeEvent, useState } from 'react';
 import { addCar } from '../api/car-api';
@@ -54,7 +54,7 @@ const AddCar = () => {
 
 	return (
 		<>
-			<button onClick={handleOpenModal}>New Car</button>
+			<Button onClick={handleOpenModal}>New Car</Button>
 			<Dialog open={openModal} onClose={handleCloseModal}>
 				<DialogTitle>New Car</DialogTitle>
 				<CarDialogContent
@@ -62,8 +62,8 @@ const AddCar = () => {
 					handleChangeInputCar={handleChangeInputCar}
 				/>
 				<DialogActions>
-					<button onClick={handleCloseModal}>Cancel</button>
-					<button onClick={handleSaveCar}>Save</button>
+					<Button onClick={handleCloseModal}>Cancel</Button>
+					<Button onClick={handleSaveCar}>Save</Button>
 				</DialogActions>
 			</Dialog>
 		</>

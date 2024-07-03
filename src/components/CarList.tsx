@@ -1,4 +1,5 @@
-import { Snackbar } from '@mui/material';
+import DeleteIcon from '@mui/icons-material/Delete';
+import { IconButton, Snackbar, Tooltip } from '@mui/material';
 import {
 	DataGrid,
 	GridCellParams,
@@ -59,19 +60,23 @@ const CarList = () => {
 			filterable: false,
 			disableColumnMenu: true,
 			renderCell: (params: GridCellParams) => (
-				<button
-					onClick={() => {
-						if (
-							window.confirm(
-								`Are you sure you want delete the car ${params.row.brand} ${params.row.model}`
-							)
-						) {
-							mutate(params.row._links.car.href);
-						}
-					}}
-				>
-					Delete
-				</button>
+				<Tooltip title='Delete Car'>
+					<IconButton
+						aria-label='delete'
+						size='small'
+						onClick={() => {
+							if (
+								window.confirm(
+									`Are you sure you want delete the car ${params.row.brand} ${params.row.model}`
+								)
+							) {
+								mutate(params.row._links.car.href);
+							}
+						}}
+					>
+						<DeleteIcon fontSize='small' />
+					</IconButton>
+				</Tooltip>
 			),
 		},
 	];
